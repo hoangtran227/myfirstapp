@@ -1,8 +1,10 @@
-from django.urls import path , re_path
+from django.conf.urls import url, include
 from . import views
 
+app_name = 'articles'
 
 urlpatterns = [
-    re_path(r'^$',views.articles_list),
-    re_path(r'^(?P<slug>[\w-]+)/$', views.articles_details),
+    url(r'^$',views.articles_list,name='list'),
+    url(r'^create/$',views.articles_create,name='create'),
+    url(r'^(?P<slug>[\w-]+)/$', views.articles_details,name='detail'),
 ]
