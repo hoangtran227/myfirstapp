@@ -22,11 +22,11 @@ from django.conf import settings
 from articles import views as article_views
 
 urlpatterns = [
-    url(r'^admin/',admin.site.urls),
+    url(r'^admin/', admin.site.urls),
     url(r'articles/', include('articles.urls')),
-    url(r'^accounts/',include('accounts.urls')),
+    url(r'^accounts/', include('accounts.urls')),
     url(r'^about/$', views.about),
-    url(r'^$', article_views.articles_list,name='home'),
+    url(r'^$', article_views.articles_list, name='home'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

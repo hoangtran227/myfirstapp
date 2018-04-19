@@ -6,15 +6,15 @@ from . import forms
 # Create your views here.
 def articles_list(request):
     articles = Article.objects.all().order_by('date')
-    return render(request,'articles/articles_list.html',{'articles' : articles})
-def articles_details(request,slug):
+    return render(request, 'articles/articles_list.html', {'articles' : articles})
+def articles_details(request, slug):
     #return HttpResponse(slug)
     article = Article.objects.get(slug=slug)
-    return render(request,'articles/article_detail.html',{'article' : article})
+    return render(request, 'articles/article_detail.html', {'article' : article})
 @login_required(login_url='/accounts/login/')
 def articles_create(request):
     if request.method == 'POST':
-        form = forms.CreateArticle(request.POST,request.FILES)
+        form = forms.CreateArticle(request.POST, request.FILES)
         if form.is_valid():
             #save article to db
             instance = form.save(commit=False)
@@ -23,4 +23,4 @@ def articles_create(request):
             return redirect('articles:list')
     else:
         form = forms.CreateArticle()
-    return render(request,'articles/article_create.html',{'form':form})
+    return render(request, 'articles/article_create.html', {'form':form})
